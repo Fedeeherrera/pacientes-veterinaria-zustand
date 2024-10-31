@@ -4,15 +4,18 @@ import Error from './Error'
 import type { DraftPatient } from '../types'
 
 function PatientForm() {
-  const addPatient  = usePatientStore((state) => state.addPatient)
+  const addPatient = usePatientStore((state) => state.addPatient)
+  const activeId = usePatientStore((state) => state.activeId)
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<DraftPatient>()
 
   const registerPatient = (data: DraftPatient) => {
     addPatient(data)
+    reset()
   }
 
   return (
